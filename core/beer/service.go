@@ -1,93 +1,39 @@
 package beer
 
-//as tags json definem como os dados vão ser transformados em JSON
-type Beer struct {
-	ID    int64     `json:"id"`
-	Name  string    `json:"name"`
-	Type  BeerType  `json:"type"`
-	Style BeerStyle `json:"style"`
+//define a interface com as funções que serão usadas pelo restante do projeto
+type UseCase interface {
+	GetAll() ([]*Beer, error)
+	Get(ID int64) (*Beer, error)
+	Store(b *Beer) error
+	Update(b *Beer) error
+	Remove(ID int64) error
 }
 
-//https://www.thebeerstore.ca/beer-101/beer-types/
-type BeerType int
+//em Go qualquer coisa que implemente as funções de uma interface
+//passa a ser uma implementação válida. Não existe a palavra "implements" como em Java ou PHP
+//desta forma, uma struct, uma string, um inteiro, etc, qualquer coisa pode ser válido, desde
+//que implemente todas as funções
+type Service struct{}
 
-const (
-	TypeAle   = 1
-	TypeLager = 2
-	TypeMalt  = 3
-	TypeStout = 4
-)
-
-//desta forma a função String pertence ao tipo e pode ser usada da seguinte forma:
-// var x TypeAle
-// fmt.Println(x.String())
-func (t BeerType) String() string {
-	switch t {
-	case TypeAle:
-		return "Ale"
-	case TypeLager:
-		return "Lager"
-	case TypeMalt:
-		return "Malt"
-	case TypeStout:
-		return "Stout"
-	}
-	return "Unknown"
+//esta função retorna um ponteiro em memória para uma estrutura
+func NewService() *Service {
+	return &Service{}
 }
 
-type BeerStyle int
+//vamos implementar as funções na próxima etapa
+func (s *Service) GetAll() ([]*Beer, error) {
+	return nil, nil
+}
 
-//usando desta forma o compilador vai automaticamente definir os ids sequencialmente
-const (
-	StyleAmber = iota + 1
-	StyleBlonde
-	StyleBrown
-	StyleCream
-	StyleDark
-	StylePale
-	StyleStrong
-	StyleWheat
-	StyleRed
-	StyleIPA
-	StyleLime
-	StylePilsner
-	StyleGolden
-	StyleFruit
-	StyleHoney
-)
-
-func (t BeerStyle) String() string {
-	switch t {
-	case StyleAmber:
-		return "Amber"
-	case StyleBlonde:
-		return "Blonde"
-	case StyleBrown:
-		return "Brown"
-	case StyleCream:
-		return "Cream"
-	case StyleDark:
-		return "Dark"
-	case StylePale:
-		return "Pale"
-	case StyleStrong:
-		return "Strong"
-	case StyleWheat:
-		return "Wheat"
-	case StyleRed:
-		return "Red"
-	case StyleIPA:
-		return "India Pale Ale"
-	case StyleLime:
-		return "Lime"
-	case StylePilsner:
-		return "Pilsner"
-	case StyleGolden:
-		return "Golden"
-	case StyleFruit:
-		return "Fruit"
-	case StyleHoney:
-		return "Honey"
-	}
-	return "Unknown"
+func (s *Service) Get(ID int64) (*Beer, error) {
+	return nil, nil
+}
+func (s *Service) Store(b *Beer) error {
+	return nil
+}
+func (s *Service) Update(b *Beer) error {
+	return nil
+}
+func (s *Service) Remove(ID int64) error {
+	return nil
 }
