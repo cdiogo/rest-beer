@@ -16,23 +16,33 @@ func TestStore(t *testing.T) {
 		Style: beer.StylePale,
 	}
 	db, err := sql.Open("sqlite3", "../../data/beer_test.db")
+
 	if err != nil {
 		t.Fatalf("Erro conectando ao banco de dados %s", err.Error())
 	}
+
 	defer db.Close()
+
 	err = clearDB(db)
+
 	if err != nil {
 		t.Fatalf("Erro limpando o banco de dados: %s", err.Error())
 	}
+
 	service := beer.NewService(db)
+
 	err = service.Store(b)
+
 	if err != nil {
 		t.Fatalf("Erro salvando no banco de dados: %s", err.Error())
 	}
+
 	saved, err := service.Get(1)
+
 	if err != nil {
 		t.Fatalf("Erro buscando do banco de dados: %s", err.Error())
 	}
+
 	if saved.ID != 1 {
 		t.Fatalf("Dados inválidos. Esperado %d, recebido %d", 1, saved.ID)
 	}
