@@ -22,7 +22,8 @@ func main() {
 	defer db.Close()
 	service := beer.NewService(db)
 	r := mux.NewRouter()
-	//handlers
+	//middlewares - código que vai ser executado em todas as requests
+	//aqui podemos colocar logs, inclusão e validação de cabeçalhos, etc
 	n := negroni.New(
 		negroni.NewLogger(),
 	) //handlers
