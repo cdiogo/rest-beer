@@ -1,0 +1,15 @@
+version: "3"
+services:
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: rest-beer
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: beer_db
+
+volumes:
+  db-data:
