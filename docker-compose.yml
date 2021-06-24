@@ -10,6 +10,14 @@ services:
       POSTGRES_USER: rest-beer
       POSTGRES_PASSWORD: test
       POSTGRES_DB: beer_db
+  mysql:
+    image: "mysql:5.7"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: rest-beer
+      MYSQL_PASSWORD: test
 
 volumes:
   db-data:
